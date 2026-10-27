@@ -1,0 +1,339 @@
+/* base.css — static site styling for Beyond One Book (KDP).
+   Local-first: no web fonts, no external assets, no tracking pixels. */
+
+:root {
+  --paper: #fdfbf7;
+  --ink: #2c2a26;
+  --muted: #6f6a60;
+  --heading: #35322c;
+  --accent: #0f6e5c;
+  --accent-soft: #eef6f3;
+  --line: #e4ddd0;
+  --card: #ffffff;
+  --code-bg: #f4f0e8;
+  --code-ink: #3d3a33;
+  --warn-bg: #fdf3e4;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 17px; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  line-height: 1.65;
+}
+
+/* Layout ------------------------------------------------------------------ */
+
+.page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 1.2rem;
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 2.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 3rem;
+}
+
+main.content { min-width: 0; }
+
+/* Header ------------------------------------------------------------------ */
+
+.topbar {
+  border-bottom: 3px solid var(--accent);
+  background: var(--card);
+}
+
+.topbar-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.topbar .site-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--heading);
+  text-decoration: none;
+}
+
+.topbar .site-name:hover { color: var(--accent); }
+
+.topbar .site-sub {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Sidebar table of contents ------------------------------------------------ */
+
+nav.toc {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+  font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+}
+
+nav.toc .toc-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+nav.toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid var(--line);
+}
+
+nav.toc li { margin: 0; }
+
+nav.toc a {
+  display: block;
+  padding: 0.25rem 0.75rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.86rem;
+  border-left: 2px solid transparent;
+  margin-left: -2px;
+  cursor: pointer;
+}
+
+nav.toc a:hover { color: var(--accent); }
+
+nav.toc li.active a {
+  color: var(--accent);
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
+nav.toc li.ws { font-style: italic; }
+
+/* Content typography ------------------------------------------------------- */
+
+.content h1 {
+  font-size: 1.9rem;
+  color: var(--heading);
+  margin: 0 0 1.2rem;
+  line-height: 1.25;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--line);
+}
+
+.content h2 {
+  font-size: 1.3rem;
+  color: var(--heading);
+  margin: 2.2rem 0 0.7rem;
+}
+
+.content h3 {
+  font-size: 1.08rem;
+  color: var(--heading);
+  margin: 1.6rem 0 0.5rem;
+}
+
+.content h4 {
+  font-size: 0.98rem;
+  color: var(--muted);
+  margin: 1.3rem 0 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.content p { margin: 0.7rem 0; }
+
+.content a { color: var(--accent); }
+
+.content a:hover { text-decoration: underline; }
+
+.content strong { color: var(--heading); }
+
+.content em { font-style: italic; }
+
+/* Lists -------------------------------------------------------------------- */
+
+.content ul, .content ol { padding-left: 1.4rem; margin: 0.6rem 0; }
+
+.content li { margin: 0.3rem 0; }
+
+.content li.checked {
+  list-style-type: square;
+  color: var(--accent);
+}
+
+.content li.checked > * { color: var(--ink); }
+
+/* Tables -------------------------------------------------------------------- */
+
+.content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0 1.3rem;
+  font-size: 0.93rem;
+  font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+}
+
+.content th, .content td {
+  border: 1px solid var(--line);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.content thead th {
+  background: var(--accent-soft);
+  color: var(--heading);
+  border-bottom: 2px solid var(--accent);
+}
+
+.content tbody tr:nth-child(even) { background: #faf7f1; }
+
+/* Code ---------------------------------------------------------------------- */
+
+.content code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  background: var(--code-bg);
+  color: var(--code-ink);
+  padding: 0.08em 0.35em;
+  border-radius: 4px;
+  font-size: 0.88em;
+}
+
+.content pre {
+  overflow-x: auto;
+  margin: 0.8rem 0 1.2rem;
+}
+
+.content pre code {
+  display: block;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--accent);
+  white-space: pre;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+/* Blockquotes / callouts ------------------------------------------------------ */
+
+.content blockquote {
+  margin: 1rem 0;
+  padding: 0.7rem 1.1rem;
+  background: var(--warn-bg);
+  border-left: 4px solid #d1913c;
+  border-radius: 0 6px 6px 0;
+}
+
+.content blockquote p { margin: 0.2rem 0; }
+
+/* Prev / next / footer -------------------------------------------------------- */
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--line);
+  font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+}
+
+.pager a { text-decoration: none; color: var(--accent); font-weight: 600; }
+
+.pager .spacer { flex: 1; }
+
+footer.foot {
+  max-width: 1180px;
+  margin: 0 auto 2rem;
+  padding: 0 1.2rem;
+  color: var(--muted);
+  font-family: "Avenir Next", "Segoe UI", Arial, sans-serif;
+  font-size: 0.85rem;
+}
+
+/* Index / hero ---------------------------------------------------------------- */
+
+.hero {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--accent);
+  border-radius: 8px;
+  padding: 1.6rem 1.8rem;
+  margin: 1rem 0 2rem;
+}
+
+.hero h1 { border: none; margin: 0 0 0.4rem; font-size: 2rem; }
+
+.hero p { margin: 0.5rem 0; max-width: 46em; }
+
+.hero .meta { color: var(--muted); font-size: 0.9rem; }
+
+.cardgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1rem 1.1rem;
+}
+
+.card h2, .card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.02rem;
+  color: var(--heading);
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.card a { text-decoration: none; color: var(--accent); }
+
+.card { transition: border-color 120ms ease; }
+
+.card:hover { border-color: var(--accent); }
+
+.companions { margin-top: 2rem; }
+
+/* Small screens ---------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .page {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  nav.toc {
+    position: static;
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+  }
+  nav.toc ul { border-left: none; }
+  nav.toc a { border-left: none; padding-left: 0; }
+}
+
+/* Print ------------------------------------------------------------------------ */
+
+@media print {
+  .topbar, nav.toc, .pager { display: none; }
+  .page { grid-template-columns: 1fr; }
+  body { background: #fff; }
+}
