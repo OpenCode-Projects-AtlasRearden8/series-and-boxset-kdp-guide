@@ -1,9 +1,10 @@
 *.pyc
+.DS_Store
 .env
 .env.*
 .pytest_cache/
 .venv/
 __pycache__/
-site/
+dist/*.tmp
 node_modules/
-.DS_Store
+site/
